@@ -1,0 +1,66 @@
+Setup the infratrure platform using AWS
+ 1 . EKS for containe orchestration
+2 ALb for loadbalencing
+3.EC2 for compute
+4. RDS for database
+5.cloud watch fot monitoring
+6. IAM roles and polices
+
+2. Infratructure as code IAC with
+ terraform
+create a tarraform setup for :
+-VPC , subnet, route table
+-EKS cluster + work nodes
+-security group, IAM role 
+-RDS / postgre SQl
+-S3 bucket
+-ALB
+
+Example floder structure
+terraform/
+-main.tf
+-variable.tf
+-otputs
+-eks
+-vpc
+-rds
+
+3.kubernet deployment 
+k8s/
+-namespace.yaml
+-frontend-deployment.yaml
+-backend-sevice.yaml
+-postgre-deployment.yaml
+-ingress.yaml
+hpa.yaml
+
+use alb ingress controller for load banancing
+
+6. IAM roles & security
+ use iAm roles for service account in eks
+etup security group for alb, ec2, rds
+apply least priviliege policies in iam roles
+enable RBAC in kubernetes
+
+7.Auto scaling 
+use kubernets HAP
+user cluster auro scaler on eks worker node
+enable ec2 auto scalling group if not using fargate
+
+8.Configure load balencer
+user aws alb with alb ingress contrller 
+confugure health check,SSL termination via ACM
+
+9.GitHub respository structure
+project-root
+terraform
+k8s
+frontend/
+	dockerfile
+backend
+	docketfile
+workflow
+.GITHUB/
+deploy.yml
+read.md
+
